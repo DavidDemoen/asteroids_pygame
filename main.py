@@ -3,6 +3,7 @@ from constants import SCREEN_WIDTH, SCREEN_HEIGHT
 from logger import log_state
 from player import Player
 from asteroid import Asteroid
+from asteroidfield import AsteroidField
 
 VERSION = pygame.version.ver
 
@@ -20,8 +21,10 @@ def main():
 
     Player.containers = (updatable, drawable)
     Asteroid.containers = (asteroids, updatable, drawable)
+    AsteroidField.containers = (updatable)
 
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+    asteroid_field = AsteroidField()
 
     while(True):
         log_state()
@@ -30,6 +33,9 @@ def main():
             if event.type == pygame.QUIT:
                 return
         screen.fill("black")
+
+        # player.update(dt)
+        # player.draw(screen)
 
         updatable.update(dt)
         for item in drawable:
